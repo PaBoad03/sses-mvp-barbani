@@ -1,0 +1,5 @@
+[
+  {"check": "assets", "target": "(the page)", "reason": "El entorno de revisión bloquea Google Fonts (ERR_BLOCKED_BY_ORB); en línea cargan. Sin internet cae a fuentes del sistema a propósito."},
+  {"check": "copy-headings", "target": "h2#recorrido-h", "reason": "Títulos en español: la lista de sustantivos del revisor es en inglés. 'Recorrido de la demo de SSES' y 'Reporte de tutores' sí nombran la parte."},
+  {"check": "hero-lines", "target": "section.hero h1", "reason": "El h1 es final ('Seguimiento escolar para el MEN', 31 caracteres) y cabe en 2 líneas a 390 con Funnel; el revisor rellena a 34 caracteres."}
+]

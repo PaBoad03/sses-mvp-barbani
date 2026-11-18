@@ -2,6 +2,13 @@
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y [SemVer](https://semver.org/lang/es/).
 
+## [1.1.0] — 2026-11-18
+### Cambiado
+- Rediseño sobre el kit completo de taste-skill: `system.css`, `motion`, `layout` y `moments`.
+- Portada con hero *triptych* (collage antes/después) y recorrido *pinned-chapters*; cierre *close-word* en oscuro.
+- Rutas por ancla (`#coordinador`, `#tutor`, `#analista`).
+- Revisión con el gate de la skill (3 rondas): quedan 2 hallazgos pendientes (fuentes bloqueadas por el entorno de revisión; el contraste del pie de las vistas ya se corrigió después de la última ronda).
+
 ## [1.0.0] — 2026-11-18
 ### Añadido
 - Portada con selector de rol (sin login) y ejemplo del problema actual (hoja de cálculo).

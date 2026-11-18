@@ -1,0 +1,313 @@
+{
+ "start": "2026-11-18T19:28:05.739Z",
+ "round": 3,
+ "idle": 0,
+ "errors": 0,
+ "status": "open",
+ "history": [
+  {
+   "at": "2026-11-18T19:29:24.801Z",
+   "mode": "manual",
+   "status": "fail",
+   "fails": 19,
+   "round": 1,
+   "reused": false,
+   "stopHookActive": false
+  },
+  {
+   "at": "2026-11-18T19:32:35.668Z",
+   "mode": "manual",
+   "status": "fail",
+   "fails": 6,
+   "round": 2,
+   "reused": false,
+   "stopHookActive": false
+  },
+  {
+   "at": "2026-11-18T19:34:08.161Z",
+   "mode": "manual",
+   "status": "open",
+   "fails": 2,
+   "round": 3,
+   "reused": false,
+   "stopHookActive": false
+  }
+ ],
+ "max": 3,
+ "marker": {
+  "page": "index.html",
+  "url": null,
+  "root": null,
+  "kind": "software",
+  "category": "seguimiento de estrategias y acompañamientos escolares",
+  "primary": "Entrar como coordinador",
+  "rounds": 3,
+  "start": "2026-11-18T19:28:05.739Z",
+  "by": "gate.mjs --start"
+ },
+ "manual": true,
+ "roundKey": "9cb053111e3870e6:97819197",
+ "roundFree": false,
+ "idleFree": false,
+ "blockKey": null,
+ "fp": "9cb053111e3870e6",
+ "page": "index.html",
+ "found": {
+  "fails": [
+   {
+    "check": "assets",
+    "where": "(the page)",
+    "msg": "the stylesheet https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400..700&family=Funnel+Sans:wght@400..600&family=DM+Mono:wght@400;500&display=swap did not load (ERR_BLOCKED_BY_ORB): everything here was measured without it",
+    "fix": "fix the path, or remove the reference",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "assets"
+    ],
+    "wheres": [
+     "(the page)"
+    ]
+   },
+   {
+    "check": "copy-headings",
+    "where": "h2#recorrido-h \"El recorrido de la demo de SSES. Tres ac\"",
+    "msg": "\"El recorrido de la demo de SSES. Tres actores, sin contraseñ\" names no product, part, place or section (2 headings like it; at most one brand line per page) (and 1 more like it: \"Reporte de tutores del a\")",
+    "fix": "name the thing in every heading: the product, a part, the place or a section noun",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "copy-headings"
+    ],
+    "wheres": [
+     "h2#recorrido-h \"El recorrido de la demo de SSES. Tres ac\""
+    ]
+   },
+   {
+    "check": "text-contrast",
+    "where": "div#analista > div.wrap > p.view-foot \"SSES Piloto, MVP académico de BARBANI S.\"",
+    "msg": "body text in #5d6b72 on #f7f9fa reads 5.22:1 (needs 7:1)",
+    "fix": "body text in the ink at 7:1 or more; grey (4.5:1 or more) only for captions and labels",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "text-contrast"
+    ],
+    "wheres": [
+     "div#analista > div.wrap > p.view-foot \"SSES Piloto, MVP académico de BARBANI S.\""
+    ]
+   },
+   {
+    "check": "hero-lines",
+    "where": "section.hero h1",
+    "msg": "the check fills the h1 to 34 characters (this hero's maxChars in heroes.json), not the page's own: it takes 3 lines at 390, 2 at most",
+    "fix": "the check fills the h1 to this hero's maxChars, not your own: take the next type pairing the deal printed (start.mjs); when the h1 is final and fits, waive it (target: section.hero h1)",
+    "widths": [
+     390
+    ],
+    "from": "layout",
+    "ids": [
+     "hero-lines"
+    ],
+    "wheres": [
+     "section.hero h1"
+    ]
+   }
+  ],
+  "warns": [
+   {
+    "check": "pinned",
+    "where": "section#recorrido > div.wrap.mo-pc__grid \"El recorrido de la demo de SSES. Tres ac\"",
+    "msg": "held on screen for 1 screen of scroll (position: sticky) while the page moves on (inside a dealt moment's section, [data-moment]: expected on every kind, two moments at most, house rule; its still is judged under reduced motion)",
+    "fix": "let the section scroll with the page",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "cta",
+    "where": "section#recorrido \"El recorrido de la demo de SSES. Tres ac\"",
+    "msg": "a section over 1.5 screens long with no link or button in it",
+    "fix": "add the action: a button in the hero, one on every priced item, one in the closing section",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "copy-buttons",
+    "where": "div.wrap > div.hero-text.grid > div.span-3.start-10 > a.btn.btn--primary \"Entrar como coordinador\"",
+    "msg": "\"Entrar como coordinador\" does not start with a verb (book, buy, try, start, get, see...)",
+    "fix": "label buttons with a verb and what the visitor gets (\"Book a room\", \"Start free trial\")",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "nav-labels",
+    "where": "header.nav > div.wrap.nav__bar > a.nav__logo \"SSES Piloto\"",
+    "msg": "\"SSES Piloto\" opens a section headed \"Seguimiento escolar para el MEN\"",
+    "fix": "name each nav link after the heading of the section it opens",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "font-load",
+    "where": "h1#hero-h \"Funnel Display\"",
+    "msg": "\"Funnel Display\" is asked for by --font-display, the h1 and the h2s but never loaded (no font link or @font-face loads it): it shows in its fallback",
+    "fix": "load every family the type asks for: name it in the font link as start.mjs prints it, spelt as Google Fonts spells it, or ask for a family the page loads",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "font-load",
+    "where": "body \"Funnel Sans\"",
+    "msg": "\"Funnel Sans\" is asked for by --font-text and the body text but never loaded (no font link or @font-face loads it): it shows in its fallback",
+    "fix": "load every family the type asks for: name it in the font link as start.mjs prints it, spelt as Google Fonts spells it, or ask for a family the page loads",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "font-load",
+    "where": ":root \"DM Mono\"",
+    "msg": "\"DM Mono\" is asked for by --font-mono but never loaded (no font link or @font-face loads it): it shows in its fallback",
+    "fix": "load every family the type asks for: name it in the font link as start.mjs prints it, spelt as Google Fonts spells it, or ask for a family the page loads",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "share-meta",
+    "where": "head",
+    "msg": "the head lacks og:image, twitter:card: a shared link shows no picture or title of its own",
+    "fix": "copy the head block of starter.html: og tags, twitter:card, the icon and theme-color (references/system.md, Head)",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "container-edges",
+    "where": "div.wrap.mo-pc__grid > div.mo-pc__text > ol.mo-pc__steps > li.mo-pc__step:nth-of-type(1) \"Estrategias del coordinador El cupo se r\"",
+    "msg": "3 text blocks start on a left line at x 106, 26px from the container's left: text starts on the container's left, or on one split line (x 623, 732, 841) (also \"Seguimiento semanal del tutor In\", \"Reporte de tutores del analista \") (it is in a scroll scene: told as a WARN) (SR-6)",
+    "fix": "start the text on the container's left, or on the one split line every split shares",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "section-gaps",
+    "where": "section#recorrido / footer#contacto",
+    "msg": "uneven space at the edge of a band: 48px outside its edge, 94px inside it (the space on either side of a change of ground reads as one gap only when the two match)",
+    "fix": "use one gap between sections (all within 25% of each other)",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "fold-cut",
+    "where": "div.wrap > div.hero-text.grid > div.span-3.start-10 > a.btn.btn--primary \"Entrar como coordinador\"",
+    "msg": "the hero's button \"Entrar como coordinador\" is cut by the bottom of the first screen (6px of its 56px below the fold)",
+    "fix": "size the hero so the heading ends above the fold, or starts below it",
+    "widths": [
+     320
+    ],
+    "from": "consistency"
+   }
+  ],
+  "crashed": [],
+  "seconds": {
+   "consistency": 66,
+   "layout": 4
+  }
+ },
+ "open": [
+  {
+   "check": "assets",
+   "where": "(the page)",
+   "msg": "the stylesheet https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400..700&family=Funnel+Sans:wght@400..600&family=DM+Mono:wght@400;500&display=swap did not load (ERR_BLOCKED_BY_ORB): everything here was measured without it",
+   "fix": "fix the path, or remove the reference",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "assets"
+   ],
+   "wheres": [
+    "(the page)"
+   ]
+  },
+  {
+   "check": "text-contrast",
+   "where": "div#analista > div.wrap > p.view-foot \"SSES Piloto, MVP académico de BARBANI S.\"",
+   "msg": "body text in #5d6b72 on #f7f9fa reads 5.22:1 (needs 7:1)",
+   "fix": "body text in the ink at 7:1 or more; grey (4.5:1 or more) only for captions and labels",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "text-contrast"
+   ],
+   "wheres": [
+    "div#analista > div.wrap > p.view-foot \"SSES Piloto, MVP académico de BARBANI S.\""
+   ]
+  }
+ ],
+ "waived": [
+  {
+   "check": "copy-headings",
+   "where": "h2#recorrido-h \"El recorrido de la demo de SSES. Tres ac\"",
+   "msg": "\"El recorrido de la demo de SSES. Tres actores, sin contraseñ\" names no product, part, place or section (2 headings like it; at most one brand line per page) (and 1 more like it: \"Reporte de tutores del a\")",
+   "fix": "name the thing in every heading: the product, a part, the place or a section noun",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "copy-headings"
+   ],
+   "wheres": [
+    "h2#recorrido-h \"El recorrido de la demo de SSES. Tres ac\""
+   ],
+   "reason": "Títulos en español: la lista de sustantivos del revisor es en inglés. 'Recorrido de la demo de SSES' y 'Reporte de tutores' sí nombran la parte."
+  },
+  {
+   "check": "hero-lines",
+   "where": "section.hero h1",
+   "msg": "the check fills the h1 to 34 characters (this hero's maxChars in heroes.json), not the page's own: it takes 3 lines at 390, 2 at most",
+   "fix": "the check fills the h1 to this hero's maxChars, not your own: take the next type pairing the deal printed (start.mjs); when the h1 is final and fits, waive it (target: section.hero h1)",
+   "widths": [
+    390
+   ],
+   "from": "layout",
+   "ids": [
+    "hero-lines"
+   ],
+   "wheres": [
+    "section.hero h1"
+   ],
+   "reason": "El h1 es final ('Seguimiento escolar para el MEN', 31 caracteres) y cabe en 2 líneas a 390 con Funnel; el revisor rellena a 34 caracteres."
+  }
+ ],
+ "warnCount": 11,
+ "at": "2026-11-18T19:34:08.162Z",
+ "openTold": true
+}

@@ -4,7 +4,8 @@
   'use strict';
 
   const CLAVE = 'sses-mvp-estado-v1';
-  const app = document.getElementById('app');
+  let app = document.getElementById('otra');
+  const vistas = { coordinador: document.getElementById('coordinador'), tutor: document.getElementById('tutor'), analista: document.getElementById('analista'), '': document.getElementById('otra') };
   const $ = (sel, el = document) => el.querySelector(sel);
   const $$ = (sel, el = document) => Array.from(el.querySelectorAll(sel));
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -68,7 +69,7 @@
   }
   function cabecera(titulo, sub, acciones, migas) {
     return `${migas ? `<nav class="crumbs" aria-label="Ruta">${migas}</nav>` : ''}
-      <div class="pagehead"><div><h1 style="font-size:clamp(1.8rem,3vw,2.4rem)">${titulo}</h1>${sub ? `<p class="muted">${sub}</p>` : ''}</div>${acciones || ''}</div>`;
+      <div class="pagehead"><div><h1 class="view-title">${titulo}</h1>${sub ? `<p class="view-sub">${sub}</p>` : ''}</div>${acciones || ''}</div>`;
   }
 
   // ---------- métricas del reporte ----------
@@ -96,60 +97,6 @@
   // VISTAS
   // =====================================================================
 
-  function vPortada() {
-    document.title = 'SSES Piloto · BARBANI';
-    const estudiantes = db.estudiantes.length, docentes = db.docentes.length, tutores = db.tutores.length;
-    return `
-    <section class="hero" aria-labelledby="h-portada">
-      <div class="enter">
-        <h1 id="h-portada">Estrategias y acompañamientos en un solo lugar, no en una hoja compartida.</h1>
-        <p class="hero__lead">El piloto SSES permite al Ministerio de Educación crear estrategias por entidad, vincular estudiantes, registrar cada semana de acompañamiento a docentes y medir el trabajo de los tutores, con las reglas del pliego aplicadas solas.</p>
-        <div class="hero__fact">
-          <div><strong>${estudiantes}</strong>estudiantes de prueba</div>
-          <div><strong>${docentes}</strong>docentes</div>
-          <div><strong>${tutores}</strong>tutores</div>
-          <div><strong>3</strong>regiones</div>
-        </div>
-        <p class="small muted" style="margin-top:18px">Elija con qué actor entrar. No hay contraseñas en esta demo.</p>
-      </div>
-      <figure class="sheet" style="margin:0" aria-label="Ejemplo de la hoja de cálculo que se usa hoy">
-        <div class="sheet__bar"><span>estrategias_2026_FINAL_v3 (2).xlsx</span></div>
-        <table>
-          <tr><td><b>Entidad</b></td><td><b>Estrategia</b></td><td><b>Cupo</b></td><td><b>Inscritos</b></td></tr>
-          <tr><td>IE Los Andes</td><td>Club de robótica</td><td>20</td><td>18</td></tr>
-          <tr><td class="bad">I.E. los andes</td><td>Robotica escolar</td><td>20</td><td>6</td></tr>
-          <tr><td>Colegio Mar Caribe</td><td>Semillero lectura</td><td>12</td><td class="bad">15</td></tr>
-          <tr><td>IE Selva Verde</td><td class="bad">#REF!</td><td></td><td></td></tr>
-        </table>
-        <figcaption class="sheet__note">Hoy: la misma entidad escrita dos veces, un cupo superado y nadie sabe quién cambió qué.</figcaption>
-      </figure>
-    </section>
-
-    <section aria-labelledby="h-recorrido">
-      <h2 id="h-recorrido" style="margin-bottom:16px">Recorrido de la demo</h2>
-      <div class="paths">
-        <a class="path" href="#/coordinador">
-          <div class="path__step">1</div>
-          <h3>Coordinador de estrategias</h3>
-          <p>Crea una estrategia, vincula estudiantes y comprueba que ya no se puede editar.</p>
-          <div class="path__go">Entrar como coordinador</div>
-        </a>
-        <a class="path" href="#/tutor">
-          <div class="path__step">2</div>
-          <h3>Tutor</h3>
-          <p>Registra la semana de acompañamiento, incluso sin conexión a internet.</p>
-          <div class="path__go">Entrar como tutor</div>
-        </a>
-        <a class="path" href="#/analista">
-          <div class="path__step">3</div>
-          <h3>Analista del Ministerio</h3>
-          <p>Ve el cumplimiento de cada tutor con lo registrado hace un minuto.</p>
-          <div class="path__go">Entrar como analista</div>
-        </a>
-      </div>
-    </section>`;
-  }
-
   // ---------- coordinador ----------
   function vEstrategias(q) {
     document.title = 'Estrategias · SSES Piloto';
@@ -157,22 +104,22 @@
     const lista = db.estrategias.filter(e => !filtro || e.entidadId === filtro);
     const filas = lista.map(e => {
       const en = entidad(e.entidadId);
-      return `<tr class="rowlink" data-href="#/coordinador/estrategia/${e.id}">
-        <td><a href="#/coordinador/estrategia/${e.id}">${esc(e.nombre)}</a>${e.version > 1 ? ` <span class="tag tag--accent">Versión ${e.version}</span>` : ''}
+      return `<tr class="rowlink" data-href="#coordinador/estrategia/${e.id}">
+        <td><a href="#coordinador/estrategia/${e.id}">${esc(e.nombre)}</a>${e.version > 1 ? ` <span class="tag tag--accent">Versión ${e.version}</span>` : ''}
           <div class="small muted">${fecha(e.inicio)} al ${fecha(e.fin)}</div></td>
         <td>${esc(en.nombre)}<div class="small muted">${esc(en.municipio)}, ${esc(en.region)}</div></td>
         <td>${cupoBar(e)}</td>
         <td>${tagEstado(e)}</td>
       </tr>`;
     }).join('');
-    return `${cabecera('Estrategias estudiantiles', 'Todas las estrategias del piloto, con su cupo y su estado.', '<a class="btn" href="#/coordinador/nueva">Crear estrategia</a>')}
-      <div class="panel">
+    return `${cabecera('Estrategias estudiantiles', 'Todas las estrategias del piloto, con su cupo y su estado.', '<a class="btn btn--primary" href="#coordinador/nueva">Crear estrategia</a>')}
+      <div class="box">
         <div class="toolbar">
-          <div class="field" style="max-width:320px"><label for="f-ent">Entidad</label>
+          <div class="fld" style="max-width:320px"><label for="f-ent">Entidad</label>
             <select id="f-ent"><option value="">Todas las entidades</option>
               ${db.entidades.map(en => `<option value="${en.id}" ${filtro === en.id ? 'selected' : ''}>${esc(en.nombre)}</option>`).join('')}
             </select></div>
-          <p class="small muted" style="padding-bottom:12px">${lista.length} ${lista.length === 1 ? 'estrategia' : 'estrategias'}</p>
+          <p class="small" style="padding-bottom:12px">${lista.length} ${lista.length === 1 ? 'estrategia' : 'estrategias'}</p>
         </div>
         <div class="table-wrap"><table class="table">
           <thead><tr><th>Estrategia</th><th>Entidad</th><th>Cupo</th><th>Estado</th></tr></thead>
@@ -181,7 +128,7 @@
       </div>`;
   }
   function bEstrategias() {
-    $('#f-ent').addEventListener('change', ev => { location.hash = '#/coordinador' + (ev.target.value ? '?entidad=' + ev.target.value : ''); });
+    $('#f-ent').addEventListener('change', ev => { location.hash = '#coordinador' + (ev.target.value ? '?entidad=' + ev.target.value : ''); });
     $$('.rowlink').forEach(tr => tr.addEventListener('click', ev => { if (!ev.target.closest('a')) location.hash = tr.dataset.href; }));
   }
 
@@ -195,33 +142,33 @@
       editar: 'Esta estrategia no tiene estudiantes vinculados, por eso todavía se puede corregir.',
       version: `Se crea una copia sin estudiantes. «${esc(e && e.nombre)}» se conserva igual para los ${e ? e.estudiantes.length : 0} estudiantes que ya participan y se cierra a nuevos estudiantes.`
     }[modo];
-    const volver = e ? `#/coordinador/estrategia/${e.id}` : '#/coordinador';
-    const migas = `<a href="#/coordinador">Estrategias</a>${e ? ` / <a href="${volver}">${esc(e.nombre)}</a>` : ''} / ${titulo}`;
+    const volver = e ? `#coordinador/estrategia/${e.id}` : '#coordinador';
+    const migas = `<a href="#coordinador">Estrategias</a>${e ? ` / <a href="${volver}">${esc(e.nombre)}</a>` : ''} / ${titulo}`;
     return `${cabecera(titulo, sub, '', migas)}
-      <form class="panel form" id="f-estr" novalidate data-modo="${modo}" ${e ? `data-id="${e.id}"` : ''}>
-        <div class="field"><label for="i-ent">Entidad</label>
+      <form class="box frm" id="f-estr" novalidate data-modo="${modo}" ${e ? `data-id="${e.id}"` : ''}>
+        <div class="fld"><label for="i-ent">Entidad</label>
           <select id="i-ent" name="entidadId" ${modo === 'editar' ? '' : ''}>
             <option value="">Seleccione una entidad</option>
             ${db.entidades.map(en => `<option value="${en.id}" ${v.entidadId === en.id ? 'selected' : ''}>${esc(en.nombre)} (${esc(en.municipio)})</option>`).join('')}
           </select></div>
-        <div class="field"><label for="i-nom">Nombre de la estrategia</label>
+        <div class="fld"><label for="i-nom">Nombre de la estrategia</label>
           <input id="i-nom" name="nombre" value="${esc(modo === 'version' ? v.nombre : v.nombre)}" autocomplete="off" placeholder="Por ejemplo: Club de ciencias"></div>
-        <div class="field"><label for="i-obj">Objetivo</label>
+        <div class="fld"><label for="i-obj">Objetivo</label>
           <textarea id="i-obj" name="objetivo">${esc(v.objetivo)}</textarea></div>
-        <div class="form__row">
-          <div class="field"><label for="i-ini">Fecha de inicio</label><input id="i-ini" name="inicio" type="date" value="${esc(v.inicio)}"></div>
-          <div class="field"><label for="i-fin">Fecha de fin</label><input id="i-fin" name="fin" type="date" value="${esc(v.fin)}"></div>
+        <div class="frm__row">
+          <div class="fld"><label for="i-ini">Fecha de inicio</label><input id="i-ini" name="inicio" type="date" value="${esc(v.inicio)}"></div>
+          <div class="fld"><label for="i-fin">Fecha de fin</label><input id="i-fin" name="fin" type="date" value="${esc(v.fin)}"></div>
         </div>
-        <div class="field" style="max-width:220px"><label for="i-cupo">Cupo máximo de estudiantes</label>
+        <div class="fld" style="max-width:220px"><label for="i-cupo">Cupo máximo de estudiantes</label>
           <input id="i-cupo" name="cupo" type="number" min="1" max="500" inputmode="numeric" value="${esc(v.cupo)}"></div>
-        <div class="form__actions"><button class="btn" type="submit">${boton}</button><a class="btn btn--ghost" href="${volver}">Cancelar</a></div>
+        <div class="btn-row"><button class="btn btn--primary" type="submit">${boton}</button><a class="btn btn--secondary" href="${volver}">Cancelar</a></div>
       </form>`;
   }
   function bFormEstrategia() {
     const f = $('#f-estr');
     f.addEventListener('submit', ev => {
       ev.preventDefault();
-      $$('.field', f).forEach(x => { x.classList.remove('has-error'); const er = $('.error', x); if (er) er.remove(); });
+      $$('.fld', f).forEach(x => { x.classList.remove('has-error'); const er = $('.error', x); if (er) er.remove(); });
       const d = Object.fromEntries(new FormData(f));
       d.nombre = d.nombre.trim(); d.objetivo = d.objetivo.trim(); d.cupo = Number(d.cupo);
       const modo = f.dataset.modo, original = f.dataset.id ? estrategia(f.dataset.id) : null;
@@ -239,7 +186,7 @@
       else if (modo === 'editar' && original && d.cupo < original.estudiantes.length) errores.cupo = 'El cupo no puede ser menor que los estudiantes vinculados.';
       const campos = Object.keys(errores);
       if (campos.length) {
-        campos.forEach(k => { const el = f.elements[k]; const fl = el.closest('.field'); fl.classList.add('has-error'); el.setAttribute('aria-invalid', 'true'); fl.insertAdjacentHTML('beforeend', `<p class="error">${errores[k]}</p>`); });
+        campos.forEach(k => { const el = f.elements[k]; const fl = el.closest('.fld'); fl.classList.add('has-error'); el.setAttribute('aria-invalid', 'true'); fl.insertAdjacentHTML('beforeend', `<p class="error">${errores[k]}</p>`); });
         f.elements[campos[0]].focus();
         return;
       }
@@ -247,17 +194,17 @@
         const id = 'ES' + (db.estrategias.length + 1);
         db.estrategias.push({ id, version: 1, versionDe: null, ...d, estado: 'activa', estudiantes: [], docentes: [] });
         guardar(); toast('Estrategia creada y activa. Ya puede vincular estudiantes.');
-        location.hash = '#/coordinador/estrategia/' + id;
+        location.hash = '#coordinador/estrategia/' + id;
       } else if (modo === 'editar') {
-        if (original.estudiantes.length) { location.hash = `#/coordinador/estrategia/${original.id}/editar`; return; }
+        if (original.estudiantes.length) { location.hash = `#coordinador/estrategia/${original.id}/editar`; return; }
         Object.assign(original, d); guardar(); toast('Cambios guardados.');
-        location.hash = '#/coordinador/estrategia/' + original.id;
+        location.hash = '#coordinador/estrategia/' + original.id;
       } else {
         const id = 'ES' + (db.estrategias.length + 1);
         db.estrategias.push({ id, version: original.version + 1, versionDe: original.id, ...d, estado: 'activa', estudiantes: [], docentes: original.docentes.slice() });
         original.estado = 'cerrada'; original.reemplazadaPor = id;
         guardar(); toast(`Versión ${original.version + 1} publicada. La versión anterior conserva a sus estudiantes.`);
-        location.hash = '#/coordinador/estrategia/' + id;
+        location.hash = '#coordinador/estrategia/' + id;
       }
     });
   }
@@ -268,24 +215,24 @@
     const en = entidad(e.entidadId);
     const anterior = e.versionDe ? estrategia(e.versionDe) : null;
     const nueva = e.reemplazadaPor ? estrategia(e.reemplazadaPor) : null;
-    const acciones = `<div class="form__actions">
-      <a class="btn btn--ghost" href="#/coordinador/estrategia/${e.id}/editar">Editar estrategia</a>
-      ${e.estado === 'cerrada' ? '' : `<a class="btn" href="#/coordinador/estrategia/${e.id}/vincular">Vincular estudiantes</a>`}</div>`;
+    const acciones = `<div class="btn-row">
+      <a class="btn btn--secondary" href="#coordinador/estrategia/${e.id}/editar">Editar estrategia</a>
+      ${e.estado === 'cerrada' ? '' : `<a class="btn btn--primary" href="#coordinador/estrategia/${e.id}/vincular">Vincular estudiantes</a>`}</div>`;
     const estudiantes = e.estudiantes.map(estudiante);
-    return `${cabecera(esc(e.nombre) + (e.version > 1 ? ` <span class="tag tag--accent" style="vertical-align:middle">Versión ${e.version}</span>` : ''), `${esc(en.nombre)}, ${esc(en.municipio)}. ${fecha(e.inicio)} al ${fecha(e.fin)}.`, acciones, '<a href="#/coordinador">Estrategias</a> / ' + esc(e.nombre))}
-      ${nueva ? `<p class="note" style="margin-bottom:16px">Esta versión está cerrada a nuevos estudiantes. Los ${e.estudiantes.length} vinculados conservan sus condiciones. La versión vigente es <a href="#/coordinador/estrategia/${nueva.id}">${esc(nueva.nombre)} (versión ${nueva.version})</a>.</p>` : ''}
-      ${anterior ? `<p class="note" style="margin-bottom:16px">Nueva versión de <a href="#/coordinador/estrategia/${anterior.id}">${esc(anterior.nombre)} (versión ${anterior.version})</a>.</p>` : ''}
+    return `${cabecera(esc(e.nombre) + (e.version > 1 ? ` <span class="tag tag--accent" style="vertical-align:middle">Versión ${e.version}</span>` : ''), `${esc(en.nombre)}, ${esc(en.municipio)}. ${fecha(e.inicio)} al ${fecha(e.fin)}.`, acciones, '<a href="#coordinador">Estrategias</a> / ' + esc(e.nombre))}
+      ${nueva ? `<p class="note">Esta versión está cerrada a nuevos estudiantes. Los ${e.estudiantes.length} vinculados conservan sus condiciones. La versión vigente es <a href="#coordinador/estrategia/${nueva.id}">${esc(nueva.nombre)} (versión ${nueva.version})</a>.</p>` : ''}
+      ${anterior ? `<p class="note">Nueva versión de <a href="#coordinador/estrategia/${anterior.id}">${esc(anterior.nombre)} (versión ${anterior.version})</a>.</p>` : ''}
       <div class="grid2">
-        <div class="panel">
-          <div class="pagehead" style="margin-bottom:12px"><h2 style="font-size:1.25rem">Estudiantes vinculados</h2>${tagEstado(e)}</div>
+        <div class="box">
+          <div class="pagehead" style="margin-bottom:12px"><h2>Estudiantes vinculados</h2>${tagEstado(e)}</div>
           ${estudiantes.length ? `<ul class="list scroll">${estudiantes.map(s => `<li><div class="grow">${esc(s.nombre)}<div class="doc">TI ${s.documento}, grado ${s.grado}</div></div>
-            ${e.estado === 'cerrada' ? '' : `<button class="btn btn--quiet btn--sm" data-desv="${s.id}" type="button">Desvincular</button>`}</li>`).join('')}</ul>`
-            : `<p class="muted">Todavía no hay estudiantes. ${e.estado === 'cerrada' ? '' : `<a href="#/coordinador/estrategia/${e.id}/vincular">Vincule los primeros</a>.`}</p>`}
+            ${e.estado === 'cerrada' ? '' : `<button class="btn btn--secondary btn--sm" data-desv="${s.id}" type="button">Desvincular</button>`}</li>`).join('')}</ul>`
+            : `<p class="muted">Todavía no hay estudiantes. ${e.estado === 'cerrada' ? '' : `<a href="#coordinador/estrategia/${e.id}/vincular">Vincule los primeros</a>.`}</p>`}
         </div>
         <div>
-          <div class="panel"><h2 style="font-size:1.25rem;margin-bottom:14px">Cupo</h2>${cupoBar(e, true)}</div>
-          <div class="panel"><h2 style="font-size:1.25rem;margin-bottom:8px">Objetivo</h2><p>${esc(e.objetivo)}</p></div>
-          <div class="panel"><h2 style="font-size:1.25rem;margin-bottom:8px">Docentes asociados</h2>
+          <div class="box"><h2 style="margin-bottom:var(--s-4)">Cupo</h2>${cupoBar(e, true)}</div>
+          <div class="box"><h2 style="margin-bottom:var(--s-2)">Objetivo</h2><p>${esc(e.objetivo)}</p></div>
+          <div class="box"><h2 style="margin-bottom:var(--s-2)">Docentes asociados</h2>
             ${e.docentes.length ? `<ul class="list">${e.docentes.map(docente).map(d => `<li><div class="grow">${esc(d.nombre)}<div class="doc">${esc(d.area)}, tutor: ${esc(tutor(d.tutorId).nombre)}</div></div></li>`).join('')}</ul>` : '<p class="muted">Sin docentes asociados.</p>'}
           </div>
         </div>
@@ -304,24 +251,24 @@
     const e = estrategia(id); if (!e) return vNoEncontrado();
     document.title = 'Editar ' + e.nombre + ' · SSES Piloto';
     if (e.estado === 'cerrada') {
-      return `${cabecera('Editar estrategia', '', '', `<a href="#/coordinador">Estrategias</a> / <a href="#/coordinador/estrategia/${e.id}">${esc(e.nombre)}</a> / Editar`)}
+      return `${cabecera('Editar estrategia', '', '', `<a href="#coordinador">Estrategias</a> / <a href="#coordinador/estrategia/${e.id}">${esc(e.nombre)}</a> / Editar`)}
         <div class="lock" role="alert"><div class="lock__icon">${I.lock}</div><div>
           <h2>Esta versión ya fue reemplazada</h2>
           <p>Está cerrada a nuevos estudiantes y sus condiciones no cambian. Los ajustes se hacen sobre la versión vigente.</p>
-          <div class="lock__actions"><a class="btn" href="#/coordinador/estrategia/${e.reemplazadaPor}">Ir a la versión vigente</a></div></div></div>`;
+          <div class="btn-row"><a class="btn btn--primary" href="#coordinador/estrategia/${e.reemplazadaPor}">Ir a la versión vigente</a></div></div></div>`;
     }
     if (!e.estudiantes.length) return formEstrategia('editar', e);
     const n = e.estudiantes.length;
-    return `${cabecera('Editar estrategia', '', '', `<a href="#/coordinador">Estrategias</a> / <a href="#/coordinador/estrategia/${e.id}">${esc(e.nombre)}</a> / Editar`)}
+    return `${cabecera('Editar estrategia', '', '', `<a href="#coordinador">Estrategias</a> / <a href="#coordinador/estrategia/${e.id}">${esc(e.nombre)}</a> / Editar`)}
       <div class="lock" role="alert" aria-labelledby="h-lock">
         <div class="lock__icon">${I.lock}</div>
         <div>
           <h2 id="h-lock">No se puede editar: ${n} estudiantes ya están vinculados</h2>
           <p>Una estrategia solo se puede modificar mientras no tenga estudiantes. Así, a quienes ya se inscribieron no se les cambian las condiciones que se les ofrecieron.</p>
-          <p class="small muted">Regla del pliego, sección Alcance del objeto. Caso de uso CU-03.</p>
-          <div class="lock__actions">
-            <a class="btn" href="#/coordinador/estrategia/${e.id}/version">Crear nueva versión</a>
-            <a class="btn btn--ghost" href="#/coordinador/estrategia/${e.id}">Ver estudiantes vinculados</a>
+          <p class="small">Regla del pliego, sección Alcance del objeto. Caso de uso CU-03.</p>
+          <div class="btn-row">
+            <a class="btn btn--primary" href="#coordinador/estrategia/${e.id}/version">Crear nueva versión</a>
+            <a class="btn btn--secondary" href="#coordinador/estrategia/${e.id}">Ver estudiantes vinculados</a>
           </div>
         </div>
       </div>`;
@@ -329,14 +276,14 @@
 
   function vVersion(id) {
     const e = estrategia(id); if (!e) return vNoEncontrado();
-    if (!e.estudiantes.length || e.estado === 'cerrada') { location.hash = `#/coordinador/estrategia/${id}/editar`; return ''; }
+    if (!e.estudiantes.length || e.estado === 'cerrada') { location.hash = `#coordinador/estrategia/${id}/editar`; return ''; }
     return formEstrategia('version', e);
   }
 
   let seleccion = new Set();
   function vVincular(id, q) {
     const e = estrategia(id); if (!e) return vNoEncontrado();
-    if (e.estado === 'cerrada') { location.hash = '#/coordinador/estrategia/' + id; return ''; }
+    if (e.estado === 'cerrada') { location.hash = '#coordinador/estrategia/' + id; return ''; }
     document.title = 'Vincular estudiantes · SSES Piloto';
     const en = entidad(e.entidadId);
     const texto = (q.get('q') || '').toLowerCase();
@@ -344,14 +291,14 @@
     const candidatos = db.estudiantes.filter(s => (todas || s.entidadId === e.entidadId) &&
       (!texto || s.nombre.toLowerCase().includes(texto) || s.documento.includes(texto)));
     const libres = e.cupo - e.estudiantes.length;
-    return `${cabecera('Vincular estudiantes', `A «${esc(e.nombre)}». Los estudiantes ya están cargados en el sistema: solo se buscan y se seleccionan.`, '', `<a href="#/coordinador">Estrategias</a> / <a href="#/coordinador/estrategia/${e.id}">${esc(e.nombre)}</a> / Vincular`)}
-      <div class="panel">
+    return `${cabecera('Vincular estudiantes', `A «${esc(e.nombre)}». Los estudiantes ya están cargados en el sistema: solo se buscan y se seleccionan.`, '', `<a href="#coordinador">Estrategias</a> / <a href="#coordinador/estrategia/${e.id}">${esc(e.nombre)}</a> / Vincular`)}
+      <div class="box">
         <div class="toolbar">
-          <div class="field"><label for="q">Buscar por nombre o documento</label><input id="q" type="search" value="${esc(q.get('q') || '')}" placeholder="Por ejemplo: Rojas o 1098700"></div>
+          <div class="fld"><label for="q">Buscar por nombre o documento</label><input id="q" type="search" value="${esc(q.get('q') || '')}" placeholder="Por ejemplo: Rojas o 1098700"></div>
           <label class="check"><input type="checkbox" id="todas" ${todas ? 'checked' : ''}> Incluir estudiantes de otras entidades</label>
         </div>
         ${cupoBar(e, true)}
-        <p class="small muted" style="margin:16px 0 4px">${candidatos.length} estudiantes encontrados${todas ? '' : ' en ' + esc(en.nombre)}</p>
+        <p class="small" style="margin:16px 0 4px">${candidatos.length} estudiantes encontrados${todas ? '' : ' en ' + esc(en.nombre)}</p>
         <ul class="list scroll" id="cands">
           ${candidatos.map(s => {
             const ya = e.estudiantes.includes(s.id);
@@ -362,9 +309,9 @@
         </ul>
         <div class="stickybar" aria-live="polite">
           <span class="grow" id="sel-txt"></span>
-          <button class="btn" id="b-vinc" type="button" style="--b-bg:#fff;--b-ink:var(--ink);--b-bd:#fff">Vincular estudiantes</button>
+          <button class="btn btn--primary" id="b-vinc" type="button">Vincular estudiantes</button>
         </div>
-        <p class="small muted" style="margin-top:10px">Cupo disponible antes de esta vinculación: ${libres}.</p>
+        <p class="small" style="margin-top:10px">Cupo disponible antes de esta vinculación: ${libres}.</p>
       </div>`;
   }
   function bVincular(id) {
@@ -388,7 +335,7 @@
       const n = seleccion.size; if (!n) return;
       e.estudiantes.push(...seleccion); seleccion = new Set(); guardar();
       toast(`${n} ${n === 1 ? 'estudiante vinculado' : 'estudiantes vinculados'}. La estrategia ya no se puede editar.`);
-      location.hash = '#/coordinador/estrategia/' + e.id;
+      location.hash = '#coordinador/estrategia/' + e.id;
     });
     pintar();
   }
@@ -414,14 +361,14 @@
     const acs = db.acompanamientos.filter(a => a.tutorId === t.id);
     const pend = acs.reduce((n, a) => n + a.registros.filter(r => r.sync === 'pendiente').length, 0);
     return `${cabecera('Mis acompañamientos de noviembre', `Tutor: ${esc(t.nombre)}, región ${esc(t.region)}. Toque una semana para registrar el seguimiento.`,
-      `<div class="roles" role="group" aria-label="Ver como tutor">${db.tutores.map(x => `<a href="#/tutor" data-tutor="${x.id}" ${x.id === t.id ? 'aria-current="page"' : ''}>${esc(x.nombre)}</a>`).join('')}</div>`)}
-      ${pend ? `<div class="note note--warn syncbar" style="margin-bottom:16px">${db.offline ? I.wifiOff : `<span class="spin" style="display:inline-flex">${I.sync}</span>`}
+      `<div class="seg" role="group" aria-label="Ver como tutor">${db.tutores.map(x => `<a href="#tutor" data-tutor="${x.id}" ${x.id === t.id ? 'aria-current="page"' : ''}>${esc(x.nombre)}</a>`).join('')}</div>`)}
+      ${pend ? `<div class="note note--warn syncbar">${db.offline ? I.wifiOff : `<span class="spin" style="display:inline-flex">${I.sync}</span>`}
         <span>${pend} ${pend === 1 ? 'registro guardado' : 'registros guardados'} en este equipo. ${db.offline ? 'Se enviarán solos cuando vuelva la conexión.' : 'Sincronizando…'}</span></div>` : ''}
       ${acs.map(a => `
         <article class="acomp">
           <div class="acomp__head">
-            <div><h2 style="font-size:1.2rem">${a.tipo === 'Grupal' ? 'Acompañamiento grupal' : 'Acompañamiento individual'}</h2>
-              <p class="small muted">${a.docentes.map(d => esc(docente(d).nombre)).join(' y ')}, ${esc(estrategia(a.estrategiaId).nombre)}</p></div>
+            <div><h2>${a.tipo === 'Grupal' ? 'Acompañamiento grupal' : 'Acompañamiento individual'}</h2>
+              <p class="small">${a.docentes.map(d => esc(docente(d).nombre)).join(' y ')}, ${esc(estrategia(a.estrategiaId).nombre)}</p></div>
             <span class="tag">${a.registros.filter(r => r.estado === 'registrada').length} de 4 semanas registradas</span>
           </div>
           <div class="weeks">
@@ -438,7 +385,7 @@
   }
   function bTutor() {
     $$('[data-tutor]').forEach(a => a.addEventListener('click', ev => { ev.preventDefault(); db.tutorActivo = a.dataset.tutor; guardar(); render(); }));
-    $$('[data-sem]').forEach(b => b.addEventListener('click', () => { const [aid, i] = b.dataset.sem.split(':'); location.hash = `#/tutor/${aid}/${Number(i) + 1}`; }));
+    $$('[data-sem]').forEach(b => b.addEventListener('click', () => { const [aid, i] = b.dataset.sem.split(':'); location.hash = `#tutor/${aid}/${Number(i) + 1}`; }));
   }
 
   function vSemana(aid, n) {
@@ -446,18 +393,18 @@
     const i = Number(n) - 1, s = a.semanas[i], r = a.registros[i]; if (!s) return vNoEncontrado();
     document.title = `Semana ${s.n} · SSES Piloto`;
     const hecho = r.estado === 'registrada';
-    return `${cabecera(`Seguimiento de la semana ${s.n}`, `${a.tipo === 'Grupal' ? 'Acompañamiento grupal' : 'Acompañamiento individual'}, semana del ${fecha(s.fecha)}.`, '', `<a href="#/tutor">Mis acompañamientos</a> / Semana ${s.n}`)}
-      ${db.offline ? `<p class="note note--warn" style="margin-bottom:16px">Está sin conexión. Puede registrar igual: el seguimiento se guarda en este equipo y se envía cuando vuelva internet.</p>` : ''}
-      ${hecho ? `<p class="note" style="margin-bottom:16px">Esta semana ya está registrada${r.sync === 'pendiente' ? ' y espera sincronizarse' : ''}. Puede revisar lo que se guardó.</p>` : ''}
-      <form class="panel form" id="f-sem" novalidate>
-        <fieldset class="field" style="border:0;padding:0;margin:0"><legend style="font-weight:500;font-size:.92rem;margin-bottom:6px">Asistencia</legend>
+    return `${cabecera(`Seguimiento de la semana ${s.n}`, `${a.tipo === 'Grupal' ? 'Acompañamiento grupal' : 'Acompañamiento individual'}, semana del ${fecha(s.fecha)}.`, '', `<a href="#tutor">Mis acompañamientos</a> / Semana ${s.n}`)}
+      ${db.offline ? `<p class="note note--warn">Está sin conexión. Puede registrar igual: el seguimiento se guarda en este equipo y se envía cuando vuelva internet.</p>` : ''}
+      ${hecho ? `<p class="note">Esta semana ya está registrada${r.sync === 'pendiente' ? ' y espera sincronizarse' : ''}. Puede revisar lo que se guardó.</p>` : ''}
+      <form class="box frm" id="f-sem" novalidate>
+        <fieldset class="fld" style="border:0;padding:0;margin:0"><legend style="font-weight:500;font-size:.92rem;margin-bottom:6px">Asistencia</legend>
           ${a.docentes.map(d => `<label class="check"><input type="checkbox" name="as_${d}" ${hecho ? (r.asistencia[d] ? 'checked' : '') : 'checked'} ${hecho ? 'disabled' : ''}> ${esc(docente(d).nombre)} <span class="muted small">${esc(docente(d).area)}</span></label>`).join('')}
         </fieldset>
-        <div class="field"><label for="s-act">Actividades realizadas</label><textarea id="s-act" name="actividades" ${hecho ? 'disabled' : ''} placeholder="Qué se trabajó con el docente esta semana">${hecho ? esc(r.actividades) : ''}</textarea></div>
-        <div class="field"><label for="s-obs">Observaciones</label><textarea id="s-obs" name="observaciones" ${hecho ? 'disabled' : ''}>${hecho ? esc(r.observaciones) : ''}</textarea></div>
-        <div class="field" style="max-width:260px"><label for="s-av">Avance del docente</label>
+        <div class="fld"><label for="s-act">Actividades realizadas</label><textarea id="s-act" name="actividades" ${hecho ? 'disabled' : ''} placeholder="Qué se trabajó con el docente esta semana">${hecho ? esc(r.actividades) : ''}</textarea></div>
+        <div class="fld"><label for="s-obs">Observaciones</label><textarea id="s-obs" name="observaciones" ${hecho ? 'disabled' : ''}>${hecho ? esc(r.observaciones) : ''}</textarea></div>
+        <div class="fld" style="max-width:260px"><label for="s-av">Avance del docente</label>
           <select id="s-av" name="avance" ${hecho ? 'disabled' : ''}><option value="">Seleccione</option>${['Bajo', 'Medio', 'Alto'].map(x => `<option ${hecho && r.avance === x ? 'selected' : ''}>${x}</option>`).join('')}</select></div>
-        <div class="form__actions">${hecho ? '<a class="btn" href="#/tutor">Volver a mis acompañamientos</a>' : `<button class="btn" type="submit">Guardar seguimiento</button><a class="btn btn--ghost" href="#/tutor">Cancelar</a>`}</div>
+        <div class="btn-row">${hecho ? '<a class="btn btn--primary" href="#tutor">Volver a mis acompañamientos</a>' : `<button class="btn btn--primary" type="submit">Guardar seguimiento</button><a class="btn btn--secondary" href="#tutor">Cancelar</a>`}</div>
       </form>`;
   }
   function bSemana(aid, n) {
@@ -465,17 +412,17 @@
     const a = db.acompanamientos.find(x => x.id === aid), i = Number(n) - 1;
     f.addEventListener('submit', ev => {
       ev.preventDefault();
-      $$('.field', f).forEach(x => { x.classList.remove('has-error'); const er = $('.error', x); if (er) er.remove(); });
+      $$('.fld', f).forEach(x => { x.classList.remove('has-error'); const er = $('.error', x); if (er) er.remove(); });
       const act = f.elements.actividades.value.trim(), av = f.elements.avance.value;
       const err = [];
       if (!act) err.push(['actividades', 'Describa al menos una actividad realizada.']);
       if (!av) err.push(['avance', 'Elija el avance del docente.']);
-      if (err.length) { err.forEach(([k, m]) => { const fl = f.elements[k].closest('.field'); fl.classList.add('has-error'); fl.insertAdjacentHTML('beforeend', `<p class="error">${m}</p>`); }); f.elements[err[0][0]].focus(); return; }
+      if (err.length) { err.forEach(([k, m]) => { const fl = f.elements[k].closest('.fld'); fl.classList.add('has-error'); fl.insertAdjacentHTML('beforeend', `<p class="error">${m}</p>`); }); f.elements[err[0][0]].focus(); return; }
       const asistencia = {}; a.docentes.forEach(d => { asistencia[d] = f.elements['as_' + d].checked; });
       a.registros[i] = { estado: 'registrada', asistencia, actividades: act, observaciones: f.elements.observaciones.value.trim(), avance: av, sync: db.offline ? 'pendiente' : 'ok' };
       guardar();
       db.offline ? toast('Guardado en este equipo. Se enviará cuando vuelva la conexión.', 'warn') : toast(`Semana ${n} registrada. El Ministerio ya la puede ver.`);
-      location.hash = '#/tutor';
+      location.hash = '#tutor';
     });
   }
 
@@ -488,15 +435,15 @@
     const tot = filas.reduce((o, { m }) => ({ v: o.v + m.vencidas, r: o.r + m.registradas }), { v: 0, r: 0 });
     const pend = pendientesSync();
     return `${cabecera('Desempeño de tutores', 'Acompañamientos de noviembre de 2026, con corte al ' + fecha(db.hoy) + '. El cumplimiento compara las semanas registradas con las que ya debían estar registradas.',
-      '<button class="btn btn--ghost" id="b-csv" type="button">Descargar en Excel</button>')}
+      '<button class="btn btn--secondary" id="b-csv" type="button">Descargar en Excel</button>')}
       <div class="kpis">
         <div class="kpi"><strong>${db.estrategias.filter(e => e.estado === 'activa').length}</strong><span>estrategias activas</span></div>
         <div class="kpi"><strong>${vinc}</strong><span>estudiantes vinculados</span></div>
         <div class="kpi"><strong>${db.acompanamientos.length}</strong><span>acompañamientos en el mes</span></div>
         <div class="kpi"><strong>${tot.v ? Math.round(tot.r / tot.v * 100) : 0}%</strong><span>cumplimiento general</span></div>
       </div>
-      ${pend ? `<p class="note note--warn" style="margin-bottom:16px">${pend} ${pend === 1 ? 'registro está' : 'registros están'} en el equipo de un tutor sin conexión. Aparecerán aquí cuando se sincronicen.</p>` : ''}
-      <div class="panel"><div class="table-wrap"><table class="table">
+      ${pend ? `<p class="note note--warn">${pend} ${pend === 1 ? 'registro está' : 'registros están'} en el equipo de un tutor sin conexión. Aparecerán aquí cuando se sincronicen.</p>` : ''}
+      <div class="box"><div class="table-wrap"><table class="table">
         <thead><tr><th>Tutor</th><th class="num">Docentes</th><th class="num">Semanas vencidas</th><th class="num">Registradas</th><th class="num">Reprogramadas</th><th>Cumplimiento</th></tr></thead>
         <tbody>${filas.map(({ t, m }) => `
           <tr><td><button class="expander" type="button" data-exp="${t.id}" aria-expanded="${abiertos.has(t.id)}">${I.chev}${esc(t.nombre)}</button><div class="small muted" style="padding-left:22px">${esc(t.region)}</div></td>
@@ -507,7 +454,7 @@
             <div class="weeks">${a.semanas.map((s, i) => { const c = claseSemana(a, i), r = a.registros[i]; return `<div class="week week--${c}"><span class="week__n">Semana ${s.n}</span>
               <span class="week__d">${r.estado === 'registrada' ? esc(r.actividades) : r.estado === 'reprogramada' ? esc(r.motivo) : textoSemana[c]}</span></div>`; }).join('')}</div>`).join('')}</td></tr>` : ''}`).join('')}
         </tbody></table></div>
-        <p class="small muted" style="margin-top:12px">Ordenado de menor a mayor cumplimiento, para ver primero a quién apoyar.</p>
+        <p class="small" style="margin-top:12px">Ordenado de menor a mayor cumplimiento, para ver primero a quién apoyar.</p>
       </div>`;
   }
   function bAnalista() {
@@ -524,16 +471,16 @@
   }
 
   function vNoEncontrado() {
-    return `${cabecera('No encontramos esa página', 'El enlace puede haber cambiado al reiniciar la demo.')}<a class="btn" href="#/">Volver al inicio</a>`;
+    return `${cabecera('No encontramos esa página', 'El enlace puede haber cambiado al reiniciar la demo.')}<a class="btn btn--primary" href="#top">Volver al inicio</a>`;
   }
 
   // =====================================================================
   // ENRUTADOR
   // =====================================================================
   function rutas(h) {
-    const [ruta, qs] = h.replace(/^#/, '').split('?');
+    const [ruta, qs] = h.replace(/^#\/?/, '').split('?');
     const q = new URLSearchParams(qs || ''); const p = ruta.split('/').filter(Boolean);
-    if (!p.length) return { rol: '', html: vPortada() };
+    if (!p.length || p[0] === 'top' || p[0] === 'contacto') return { rol: '', portada: true };
     if (p[0] === 'coordinador') {
       if (p.length === 1) return { rol: 'coordinador', html: vEstrategias(q), bind: bEstrategias };
       if (p[1] === 'nueva') return { rol: 'coordinador', html: formEstrategia('nueva'), bind: bFormEstrategia };
@@ -553,27 +500,46 @@
   }
 
   let ultimaRuta = '';
+  const portada = $$('[data-portada]');
   function render(mantenerFoco) {
-    const h = location.hash || '#/';
+    const h = location.hash || '#top';
     const base = h.split('?')[0];
     if (!base.includes('/vincular')) seleccion = new Set();
     const activo = document.activeElement && document.activeElement.id;
     const caret = activo && document.activeElement.selectionStart;
     const r = rutas(h);
-    app.innerHTML = r.html;
-    $$('.roles--main a').forEach(a => a.toggleAttribute('aria-current', a.dataset.rol === r.rol));
-    $$('.roles--main a[aria-current]').forEach(a => a.setAttribute('aria-current', 'page'));
+    const enPortada = !!r.portada;
+    portada.forEach(el => { el.hidden = !enPortada; });
+    Object.values(vistas).forEach(v => { v.hidden = true; v.innerHTML = ''; });
+    app = vistas[r.rol] || vistas[''];
+    app.hidden = enPortada;
+    if (enPortada) {
+      document.title = 'SSES Piloto: seguimiento extracurricular para el MEN · BARBANI';
+      if (ultimaRuta && ultimaRuta !== base) { window.scrollTo(0, 0); window.dispatchEvent(new Event('resize')); }
+    } else {
+      app.innerHTML = '<div class="wrap">' + r.html + '<p class="view-foot">SSES Piloto, MVP académico de BARBANI S.A.S. Todos los nombres y documentos son ficticios.</p></div>';
+    }
+    $$('.nav__links a[data-rol]').forEach(a => { if (a.dataset.rol === r.rol) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
     if (r.bind) r.bind();
-    if (mantenerFoco && activo && document.getElementById(activo)) {
+    if (!enPortada && mantenerFoco && activo && document.getElementById(activo)) {
       const el = document.getElementById(activo); el.focus();
       try { if (caret != null) el.setSelectionRange(caret, caret); } catch (e) { /* no aplica */ }
-    } else if (base !== ultimaRuta) {
+    } else if (!enPortada && base !== ultimaRuta) {
       window.scrollTo(0, 0);
       const h1 = $('h1', app); if (h1 && ultimaRuta) { h1.setAttribute('tabindex', '-1'); h1.focus({ preventScroll: true }); }
     }
     ultimaRuta = base;
     pintarRed();
   }
+
+  // Respaldo del menú en pantallas angostas cuando los módulos del kit no cargan (abriendo el archivo con doble clic).
+  setTimeout(() => {
+    if (document.documentElement.dataset.tone) return; // system.js ya lo maneja
+    const nav = $('.nav'), t = $('.nav__toggle');
+    if (!nav || !t) return;
+    t.addEventListener('click', () => { const o = !nav.classList.contains('is-open'); nav.classList.toggle('is-open', o); t.setAttribute('aria-expanded', String(o)); });
+    $$('.nav__links a').forEach(a => a.addEventListener('click', () => { nav.classList.remove('is-open'); t.setAttribute('aria-expanded', 'false'); }));
+  }, 1500);
 
   // ---------- conexión simulada ----------
   function pintarRed() {
@@ -598,7 +564,7 @@
   $('#b-reset').addEventListener('click', () => {
     db = inicial(); seleccion = new Set(); abiertos = new Set(); guardar();
     toast('Demo reiniciada con los datos iniciales.');
-    location.hash = '#/'; render();
+    if (location.hash && location.hash !== '#top') location.hash = '#top'; else render();
   });
 
   window.addEventListener('hashchange', () => render());

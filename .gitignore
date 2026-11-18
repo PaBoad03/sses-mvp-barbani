@@ -5,3 +5,5 @@ node_modules/
 .vscode/
 .idea/
 _test/
+.taste-skill/gate/
+.taste-skill/chrome-*/

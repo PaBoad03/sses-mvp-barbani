@@ -23,7 +23,7 @@
 ## ▶️ Cómo correrlo
 
 - **En línea:** GitHub Pages → `https://paboad03.github.io/sses-mvp-barbani/`
-- **Sin internet (recomendado para la sustentación):** descargar el repo y abrir `index.html` con doble clic. No requiere instalar nada.
+- **Sin internet (recomendado para la sustentación):** descargar el repo y abrir `index.html` con doble clic. No requiere instalar nada. Sin servidor, el navegador no carga los módulos del kit: la app funciona completa, pero el collage del hero queda quieto y el recorrido no se fija al hacer scroll.
 - **Reiniciar la demo:** botón *↺ Reiniciar demo* en la barra superior (vuelve a los datos iniciales).
 
 Datos precargados (según la sección 2.8 de la propuesta): **3 entidades, 2 estrategias, 30 estudiantes, 6 docentes, 2 tutores.**
@@ -31,16 +31,22 @@ Datos precargados (según la sección 2.8 de la propuesta): **3 entidades, 2 est
 ## 🗂️ Estructura
 
 ```
-├── index.html            ← la app (una sola página)
-├── css/styles.css
+├── index.html            ← la app (una sola página): portada + vistas por actor
+├── assets/               ← kit de taste-skill 2.5.1 (system.css/js, motion, layout, moments)
+├── css/app.css           ← CSS propio de la app, sobre los tokens del kit
 ├── js/datos.js           ← datos ficticios precargados
 ├── js/app.js             ← lógica y pantallas
+├── .taste-skill/         ← reparto de diseño, historial y exenciones del revisor
 ├── docs/
 │   ├── PLAN.md           ← alcance MoSCoW y trazabilidad N → HU → CU
 │   ├── TEORIA_MVP.md     ← fundamento teórico con fuentes
 │   └── GUION_DEMO.md     ← guion de la presentación de 5 minutos
 └── CHANGELOG.md
 ```
+
+## 🎨 Diseño
+
+Construido con **taste-skill 2.5.1** (`Leonxlnx/taste-skill`): paleta *cool-white-slate*, tipografía *Funnel*, botones *arrow*, hero *triptych* y momento *pinned-chapters* en el recorrido, todos asignados por los scripts de la skill. Revisión final del gate: `GATE: OPEN`, con las exenciones razonadas en `.taste-skill/waivers.json`.
 
 ## 🔀 Control de versiones
 

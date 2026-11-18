@@ -1,0 +1,11 @@
+{
+ "page": "index.html",
+ "url": null,
+ "root": null,
+ "kind": "software",
+ "category": "seguimiento de estrategias y acompañamientos escolares",
+ "primary": "Entrar como coordinador",
+ "rounds": 3,
+ "start": "2026-11-18T19:28:05.739Z",
+ "by": "gate.mjs --start"
+}
