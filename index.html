@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es" data-type="software" data-radius="soft" data-motion>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SSES Piloto · BARBANI</title>
+  <meta name="description" content="MVP del piloto SSES: estrategias estudiantiles y acompañamientos pedagógicos en un solo lugar. Demo con datos ficticios de BARBANI S.A.S.">
+  <meta name="page-type" content="software">
+  <meta name="site-kind" content="software">
+  <meta name="theme-color" content="#f7f9fa">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%230d7480'/%3E%3Cpath d='M8 23V9M8 23h16M12 18l4-5 4 3 4-6' fill='none' stroke='white' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <!-- Fuentes dadas por taste-skill (Funnel). Sin internet, cae a las fuentes del sistema. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400..700&family=Funnel+Sans:wght@400..600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- taste-skill: kind software (saas); palette cool-white-slate (gris frío institucional con acento petróleo: sobrio para un sistema del Estado, sin colores de marca oficial); type funnel; radius soft; motion: entrada única de la portada, hover/press en botones y tarjetas enlazadas, bloqueo que aparece al intentar editar. -->
+  <a class="skip" href="#app">Saltar al contenido</a>
+  <div class="demo-ribbon">Demo del MVP con datos ficticios. BARBANI S.A.S. para el piloto SSES.</div>
+  <header class="topbar">
+    <div class="topbar__in">
+      <a class="brand" href="#/" aria-label="SSES Piloto, inicio">
+        <span class="brand__mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 18V6M4 18h16M8 14l3-4 3 2 5-6"/></svg></span>
+        <span><span class="brand__name">SSES Piloto</span><span class="brand__by">por BARBANI</span></span>
+      </a>
+      <nav class="roles roles--main" aria-label="Actor">
+        <a href="#/coordinador" data-rol="coordinador">Coordinador</a>
+        <a href="#/tutor" data-rol="tutor">Tutor</a>
+        <a href="#/analista" data-rol="analista">Analista</a>
+      </nav>
+      <div class="topbar__tools">
+        <button class="net" id="b-net" type="button" aria-pressed="false" title="Simula que el equipo pierde la conexión a internet">
+          <span class="net__dot"></span><span class="net__label">En línea</span>
+        </button>
+        <button class="btn btn--quiet btn--sm" id="b-reset" type="button" title="Vuelve a los datos iniciales">Reiniciar demo</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="app" tabindex="-1"></main>
+  <footer class="foot">SSES Piloto, MVP académico. Gestión de Proyectos de Software, Universidad de La Sabana, 2026. Todos los nombres y documentos son ficticios.</footer>
+  <div class="toasts" id="toasts" aria-live="polite"></div>
+
+  <script src="js/datos.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
