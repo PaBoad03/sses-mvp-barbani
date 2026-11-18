@@ -8,16 +8,16 @@ Estructura: **dolor → solución → por qué nosotros → oferta → demo en v
 
 | Integrante | Rol en la presentación | Diapositivas | Tiempo |
 |---|---|---|---|
-| **Pablo Boada Rozo** | Abre y cierra. **Maneja el computador** durante la demo | 1, 2, 7 | 0:00–0:40 y 4:30–5:00 |
-| **Juan David Henao Osorio** | La solución y la hipótesis del MVP | 3 | 0:40–1:00 |
+| **Juan David Henao Osorio** | Abre: quiénes somos, el problema y la solución | 1, 2, 3 | 0:00–1:00 |
 | **Andrés Felipe Sánchez García** | Por qué BARBANI (criterios del pliego) | 4 | 1:00–1:25 |
 | **Santiago Bazzani Rincón** | La oferta: plazo, precio, sesiones e informes | 5 | 1:25–1:50 |
 | **Daniel David Gómez Britto** | Narra la demo: anuncio y coordinador | 6 + MVP | 1:50–2:40 |
 | **Cristian Manuel Castañeda** | Narra la demo: tutor, analista y resumen | MVP + 6 | 2:40–4:30 |
+| **Pablo Boada Rozo** | **Maneja el computador** durante la demo y da el cierre con la petición | 7 | 4:30–5:00 |
 
 Mientras alguien habla, el resto mira al jurado o a la pantalla, nunca al celular.
 
-## Antes de entrar al salón (responsable: Pablo)
+## Antes de entrar al salón (responsable: Pablo, que maneja el computador)
 - [ ] MVP abierto **local**: `index.html` con doble clic. No depender del wifi del salón.
 - [ ] **Reiniciar demo** y verificar que diga *En línea*.
 - [ ] Zoom del navegador al 110–125 % para que se lea desde el fondo.
@@ -28,18 +28,18 @@ Mientras alguien habla, el resto mira al jurado o a la pantalla, nunca al celula
 
 ## El guion
 
-### 0:00–0:15 · Diapositiva 1, Portada — **Pablo**
+### 0:00–0:15 · Diapositiva 1, Portada — **Juan David**
 > "Buenos días. Somos BARBANI. Construimos y operamos el piloto que saca el seguimiento extracurricular del Ministerio de las hojas de cálculo."
 
 *(Pasa a la diapositiva 2.)*
 
-### 0:15–0:40 · Diapositiva 2, El problema — **Pablo**
+### 0:15–0:40 · Diapositiva 2, El problema — **Juan David**
 > "Imaginen a un coordinador del Ministerio. Abre la hoja y encuentra la misma institución escrita dos veces, más inscritos que cupos y un cambio que nadie sabe quién hizo. Con eso no se decide llevar un sistema a todo el país."
->
-> "Juan David les cuenta cómo lo resolvemos."
+
+*(Pasa a la diapositiva 3.)*
 
 ### 0:40–1:00 · Diapositiva 3, La solución — **Juan David**
-> "SSES hace cumplir las reglas del pliego por sí solo. Nuestro MVP prueba una sola hipótesis: el Ministerio puede dejar las hojas sin perder el control. Lo hace con los tres actores que lo usan: el coordinador, el tutor y el analista. No trajimos un login ni pantallas genéricas: trajimos lo que el Ministerio pidió."
+> "Nuestra respuesta: SSES hace cumplir las reglas del pliego por sí solo. Nuestro MVP prueba una sola hipótesis: el Ministerio puede dejar las hojas sin perder el control. Lo hace con los tres actores que lo usan: el coordinador, el tutor y el analista. No trajimos un login ni pantallas genéricas: trajimos lo que el Ministerio pidió."
 >
 > "Andrés, ¿por qué nosotros?"
 
