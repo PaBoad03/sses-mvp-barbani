@@ -15,7 +15,7 @@ Estructura: **dolor → solución → por qué nosotros → oferta → demo en v
 | **Cristian Manuel Castañeda** | Narra la demo: tutor, analista y resumen | MVP + 6 | 2:40–4:30 |
 | **Pablo Boada Rozo** | **Maneja el computador** durante la demo y da el cierre con la petición | 7 | 4:30–5:00 |
 
-Mientras alguien habla, el resto mira al jurado o a la pantalla, nunca al celular.
+Los cambios de persona se hacen sin presentarse ni pasarse la palabra: el siguiente da un paso al frente y empieza. Mientras alguien habla, el resto mira al jurado o a la pantalla, nunca al celular.
 
 ## Antes de entrar al salón (responsable: Pablo, que maneja el computador)
 - [ ] MVP abierto **local**: `index.html` con doble clic. No depender del wifi del salón.
@@ -40,18 +40,14 @@ Mientras alguien habla, el resto mira al jurado o a la pantalla, nunca al celula
 
 ### 0:40–1:00 · Diapositiva 3, La solución — **Juan David**
 > "Nuestra respuesta: SSES hace cumplir las reglas del pliego por sí solo. Nuestro MVP prueba una sola hipótesis: el Ministerio puede dejar las hojas sin perder el control. Lo hace con los tres actores que lo usan: el coordinador, el tutor y el analista. No trajimos un login ni pantallas genéricas: trajimos lo que el Ministerio pidió."
->
-> "Andrés, ¿por qué nosotros?"
 
 ### 1:00–1:25 · Diapositiva 4, Por qué BARBANI — **Andrés Felipe**
-> "Porque respondemos a lo que el pliego valora especialmente. Conectividad limitada: el tutor registra sin internet, y lo van a ver en un minuto. Alta concurrencia: probamos con mil usuarios al tiempo y dos millones de registros. Y pilotaje con usuarios reales: treinta sesiones con tutores en las cinco regiones."
->
-> "Santiago, ¿cuánto y en cuánto tiempo?"
+> "BARBANI responde a lo que el pliego valora especialmente. Conectividad limitada: el tutor registra sin internet, y lo van a ver en un minuto. Alta concurrencia: probamos con mil usuarios al tiempo y dos millones de registros. Y pilotaje con usuarios reales: treinta sesiones con tutores en las cinco regiones."
 
 ### 1:25–1:50 · Diapositiva 5, La oferta — **Santiago**
 > "Cinco meses, del primero de diciembre al treinta de abril. Ciento noventa y ocho coma cuatro millones, por debajo de los doscientos del presupuesto y con una reserva para los riesgos. Treinta sesiones con soporte en vivo, y tres informes para decidir: desempeño, percepción de los tutores y recomendaciones."
 >
-> "Ahora se lo mostramos funcionando. Daniel."
+> "Ahora se lo mostramos funcionando."
 
 ### 1:50–2:00 · Diapositiva 6, Demo (*Tell*) — **Daniel**
 > "Van a ver tres reglas cumplidas: una estrategia con estudiantes no se puede editar, un registro sin internet no se pierde, y el reporte cambia en el momento."
@@ -67,8 +63,6 @@ Mientras alguien habla, el resto mira al jurado o a la pantalla, nunca al celula
 | Marca 3 estudiantes → **Vincular 3 estudiantes** | "Y el sistema no deja pasar del cupo." |
 | **Editar estrategia** → aparece el aviso rojo | "Ahora que tiene estudiantes intento editarla… y no me deja. Es la regla del pliego: a quien ya se inscribió no se le cambian las condiciones." |
 | Señala **Crear nueva versión** (no hace clic) | "Si de verdad hay que cambiarla, se crea una nueva versión y la original queda intacta." |
-
-> "Cristian, ¿y el tutor?"
 
 ### 2:40–3:35 · MVP, Tutor — **Cristian narra, Pablo hace los clics**
 
@@ -91,7 +85,7 @@ Mientras alguien habla, el resto mira al jurado o a la pantalla, nunca al celula
 *(Pablo vuelve a las diapositivas: la 6.)*
 
 ### 4:20–4:30 · Diapositiva 6, Demo (*Tell* final) — **Cristian**
-> "Las tres reglas, cumplidas: sin editar lo que ya tiene estudiantes, sin perder registros y con el reporte al día. Pablo."
+> "Las tres reglas, cumplidas: sin editar lo que ya tiene estudiantes, sin perder registros y con el reporte al día."
 
 ### 4:30–5:00 · Diapositiva 7, Cierre — **Pablo**
 > "Sin hojas compartidas. Reglas que se cumplen solas. Evidencia para decidir. Adjudíquennos el piloto y empezamos el primero de diciembre. Gracias."
@@ -111,7 +105,7 @@ Mientras alguien habla, el resto mira al jurado o a la pantalla, nunca al celula
 | "¿Dónde está el ente de control? ¿Y los reportes de ley?" | **Cristian** | Fuera del MVP (sección 2.8): se construyen en el sprint 4, el ente de control con acceso de solo lectura. |
 | "¿Cómo llegan a $198,4 millones? ¿Qué pasa si se atrasan?" | **Santiago** | Recursos humanos y ambientes de Azure según la calculadora oficial, con reserva de contingencia de $9,45 millones. La línea base protege las actividades que resuelven las necesidades; lo demás se puede reprogramar sin afectarlas. |
 
-Regla: si la pregunta no es para uno, lo dice y la pasa ("eso lo responde Santiago"). Nunca dos personas responden a la vez.
+Regla: responde quien tiene el tema asignado, sin anunciarlo. Nunca dos personas responden a la vez.
 
 ## Plan B (responsable: Pablo)
 - Si el navegador falla: seguir la demo en el celular (GitHub Pages) o en otro computador.
