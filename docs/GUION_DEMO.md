@@ -11,17 +11,22 @@ Estructura: **dolor → solución → demo → qué compra el Ministerio → cie
 
 ## Minuto a minuto
 
-| Tiempo | Qué se ve | Qué se dice (idea, no leer) |
+| Tiempo | Diapositiva / pantalla | Qué se dice (idea, no leer) |
 |---|---|---|
-| 0:00–0:40 | Diapositivas 1–2: el problema | "Hoy el seguimiento de las actividades extracurriculares del país vive en hojas de cálculo compartidas: la misma entidad escrita dos veces, cupos superados y nadie sabe quién cambió qué. El Ministerio no puede decidir con eso." |
-| 0:40–1:10 | Diapositiva 3: la solución y la hipótesis | "BARBANI propone SSES. Trajimos un MVP que prueba una sola cosa: que el Ministerio puede dejar las hojas y tener las reglas del pliego aplicadas solas. Se lo mostramos con los tres actores." |
-| 1:10–1:20 | MVP: portada | "Esta es la hoja de hoy. Y estos son los tres actores. Entramos sin contraseña: el login no es lo que el Ministerio necesita ver." |
-| 1:20–2:10 | **Coordinador**: Estrategias → *Semillero de lectura en voz alta* (vacía) → *Vincular estudiantes* → marcar 3 → *Vincular 3 estudiantes* | "Cada estrategia muestra su cupo. Los estudiantes ya están cargados: solo se buscan y se marcan. El sistema no deja pasar del cupo." |
-| 2:10–2:40 | **El momento clave**: *Editar estrategia* → aparece el bloqueo rojo → señalar *Crear nueva versión* | "Ahora que tiene estudiantes, intento editarla… y no me deja. Es la regla del pliego: a quien ya se inscribió no se le cambian las condiciones. Si necesito cambiarla, creo una nueva versión y la original queda intacta." |
-| 2:40–3:25 | **Tutor**: pulsar *En línea* → *Sin conexión* → *Semana 3* (borde punteado) → escribir una actividad, avance *Alto* → *Guardar seguimiento* → semana en amarillo *Pendiente de sincronizar* → pulsar de nuevo para volver *En línea* → *Sincronizado* | "El tutor está en Leticia, sin señal. Igual registra la semana: queda guardada en su equipo y, cuando vuelve internet, se envía sola. El pliego pide funcionar con conectividad limitada: esto es eso." |
-| 3:25–3:50 | **Analista**: *Desempeño de tutores* → Laura pasa de 67 % a **83 %** → abrir el detalle | "Lo que el tutor registró hace 30 segundos ya está en el reporte. Ordenado de menor a mayor cumplimiento: el Ministerio ve primero a quién apoyar. Y lo descarga en Excel." |
-| 3:50–4:30 | Diapositiva 4: qué compra el Ministerio | "Esto es el MVP. El piloto completo son 5 meses, 30 sesiones con tutores en 5 regiones, pruebas con 1.000 usuarios concurrentes y 2 millones de registros, y tres informes para decidir. Todo por $198,4 millones, bajo el presupuesto." |
-| 4:30–5:00 | Diapositiva 5: cierre | "Sin hojas compartidas, con reglas que se cumplen solas y evidencia real para decidir. BARBANI está listo para empezar el 1 de diciembre." |
+| 0:00–0:15 | 1. Portada | "BARBANI construye y opera el piloto que saca el seguimiento extracurricular de las hojas de cálculo." |
+| 0:15–0:40 | 2. El problema | Contar el dolor desde el coordinador: abre la hoja, alguien la cambió, no sabe quién. "Con eso no se decide una implementación nacional." |
+| 0:40–1:05 | 3. La solución y la hipótesis | "SSES hace cumplir las reglas del pliego por sí solo. Nuestro MVP prueba que el Ministerio puede dejar las hojas sin perder control." |
+| 1:05–1:15 | 4. Demo (*Tell*) | Anunciar las 3 reglas que van a ver. Pasar al navegador. |
+| 1:15–2:00 | MVP: Coordinador | Estrategias → *Semillero de lectura en voz alta* → *Vincular estudiantes* → marcar 3 → *Vincular 3 estudiantes*. "El sistema no deja pasar del cupo." |
+| 2:00–2:30 | MVP: el bloqueo | *Editar estrategia* → bloqueo rojo → señalar *Crear nueva versión*. "Regla del pliego: a quien ya se inscribió no se le cambian las condiciones." |
+| 2:30–3:15 | MVP: Tutor | *En línea* → *Sin conexión* → *Semana 3* → actividad + avance *Alto* → *Guardar* → *Pendiente de sincronizar* → volver *En línea* → sincronizado. |
+| 3:15–3:35 | MVP: Analista | Laura pasa de 67 % a **83 %**; abrir el detalle. "Lo registrado hace 30 segundos ya está en el reporte." |
+| 3:35–3:45 | 4. Demo (*Tell* final) | Volver a la diapositiva y resumir: "las tres reglas, cumplidas." |
+| 3:45–4:10 | 5. Por qué BARBANI | Criterios que el pliego valora especialmente → respuesta: sin conexión (lo vieron), 1.000 usuarios y 2 millones de registros, 30 sesiones en 5 regiones. |
+| 4:10–4:35 | 6. La oferta | 5 meses, $198,4 M bajo el presupuesto, 30 sesiones, 3 informes. |
+| 4:35–5:00 | 7. Cierre y petición | "Adjudíquenos el piloto y empezamos el 1 de diciembre." Silencio. Preguntas. |
+
+Diapositivas 8–10 (respaldo): capturas a pantalla completa, solo si falla el navegador.
 
 ## Preguntas probables del jurado
 - **"¿Esto es un MVP o un prototipo?"** → Un MVP tipo *Wizard of Oz*: la interfaz es real y la lógica se simula, para validar la hipótesis con el cliente con el menor esfuerzo (Eric Ries). No está montado en Azure a propósito.
