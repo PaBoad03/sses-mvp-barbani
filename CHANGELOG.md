@@ -2,6 +2,12 @@
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y [SemVer](https://semver.org/lang/es/).
 
+## [1.3.0] — 2026-11-19
+### Cambiado
+- Presentación de 15 minutos: 12 diapositivas con arquitectura, metodología, cronograma con línea base, pilotaje, riesgos y desglose de costos.
+- Guion de 15 minutos por integrante, con la demo ampliada (crear estrategia, nueva versión, descarga) y recortes si falta tiempo.
+- `presentacion/construir.py` regenera el visor y el PDF.
+
 ## [1.2.0] — 2026-11-18
 ### Añadido
 - `presentacion/`: visor HTML sin internet (con notas del orador), PDF de 7 páginas y archivos fuente del pitch.

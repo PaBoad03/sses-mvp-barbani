@@ -4,9 +4,9 @@ Resumen en palabras propias de las fuentes consultadas.
 
 | Principio | Fuente | Cómo se aplicó en el deck de BARBANI |
 |---|---|---|
-| **10/20/30:** máximo 10 diapositivas, 20 minutos, letra mínima de 30 pt | Guy Kawasaki | 7 diapositivas principales + 3 de respaldo, 5 minutos. Texto mínimo de 32–40 px sobre lienzo de 1920 (antes había textos de 28 px) |
+| **10/20/30:** máximo 10 diapositivas, 20 minutos, letra mínima de 30 pt | Guy Kawasaki | 12 diapositivas para 15 minutos (10 de contenido más portada y cierre), dentro de los 20 minutos de la regla. Texto mínimo de 26–40 px sobre lienzo de 1920 |
 | **Legible, simple, obvio:** una idea por diapositiva que un extraño entienda de un vistazo | Kevin Hale (Y Combinator) | Se quitaron las frases secundarias de las tarjetas; cada diapositiva deja una sola frase |
-| **Las capturas de pantalla suelen ser ilegibles** | Kevin Hale (YC) | La diapositiva de demo ya no tiene tres capturas pequeñas: anuncia las 3 reglas que se verán. Las capturas pasaron, a pantalla completa, a diapositivas de respaldo |
+| **Las capturas de pantalla suelen ser ilegibles** | Kevin Hale (YC) | La diapositiva de demo ya no tiene tres capturas pequeñas: anuncia las 3 reglas que se verán. No hay capturas: la demo es siempre en vivo |
 | **Títulos que cuentan la historia**, no rótulos tipo "Problema" o "Solución" | Scott Sage sobre la plantilla Sequoia | Cada título es una afirmación: "Hoy el Ministerio decide con una hoja que cualquiera puede cambiar", "Por $198,4 millones, evidencia para decidir en 5 meses" |
 | **Propósito en una frase al inicio**; orden problema → solución → por qué ahora / por qué nosotros → modelo → equipo | Sequoia (*Writing a Business Plan*) | La portada define a BARBANI en una frase; el orden es problema → solución → demo → por qué BARBANI → oferta → petición |
 | **En licitaciones públicas, los diferenciadores deben responder a los criterios de evaluación** y los beneficios deben decirse explícitamente | Guías de presentaciones orales a gobierno (GovEagle, GovCon Giants, iQuasar) | Nueva diapositiva "Respondemos a lo que el pliego valora especialmente": conectividad, concurrencia y pilotaje, cada uno con la respuesta de BARBANI |

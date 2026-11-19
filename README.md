@@ -40,7 +40,7 @@ Datos precargados (según la sección 2.8 de la propuesta): **3 entidades, 2 est
 ├── docs/
 │   ├── PLAN.md           ← alcance MoSCoW y trazabilidad N → HU → CU
 │   ├── TEORIA_MVP.md     ← fundamento teórico con fuentes
-│   ├── GUION_DEMO.md     ← guion de la presentación de 5 minutos
+│   ├── GUION_DEMO.md     ← guion de la presentación de 15 minutos, por integrante
 │   └── TEORIA_PITCH.md   ← teoría de pitch deck aplicada
 ├── presentacion/         ← diapositivas: visor HTML, PDF y fuente
 └── CHANGELOG.md

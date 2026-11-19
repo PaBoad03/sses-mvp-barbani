@@ -1,0 +1,18 @@
+<section id="arquitectura">
+<h2>Una arquitectura en Azure pensada para todo el país</h2>
+<div class="arch">
+<div class="node fade-up"><h3>Tutores y analistas</h3><p>Celular o computador. Funciona sin internet y sincroniza después.</p></div>
+<p class="arrow">→</p>
+<div class="node fade-up d1"><h3>Front Door y CDN</h3><p>Entrada única, cerca de cada región, con cifrado.</p></div>
+<p class="arrow">→</p>
+<div class="node key fade-up d2"><h3>API en App Service</h3><p>En 2 zonas, con autoescalado para los picos.</p></div>
+<p class="arrow">→</p>
+<div class="node fade-up d3"><h3>PostgreSQL y Redis</h3><p>Datos con integridad, consultas rápidas.</p></div>
+</div>
+<div class="arch2">
+<div class="chip"><h3>Functions</h3><p>Cargas masivas y reportes grandes en segundo plano.</p></div>
+<div class="chip"><h3>Key Vault y Entra ID</h3><p>Secretos protegidos y acceso por rol.</p></div>
+<div class="chip"><h3>Application Insights</h3><p>Monitoreo y alertas durante el pilotaje.</p></div>
+</div>
+<aside>ANDRÉS FELIPE · 3:30 a 4:30. "Así está construido. El tutor usa el celular o el computador y puede registrar sin señal. Todo entra por Front Door, que lo acerca a cada región. La lógica corre en dos zonas de Azure con autoescalado, para aguantar la concurrencia. Los datos van en PostgreSQL, que es lo que garantiza la regla de no editar una estrategia con estudiantes. Las cargas grandes y los reportes pesados corren aparte, para no frenar a nadie, y todo queda monitoreado durante el pilotaje."</aside>
+</section>
